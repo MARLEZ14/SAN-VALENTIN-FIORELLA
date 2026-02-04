@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Fiorella ❤️</title>
+    <style>
+        body {
+            background-color: #ffe6e6;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95); /* Un poco transparente para ver girasoles detrás */
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            max-width: 90%;
+            position: relative;
+            z-index: 10; /* Asegura que el texto esté ENCIMA de los girasoles */
+        }
+
+        h1 {
+            color: #ff4d4d;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            position: relative;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #ff4d4d;
+            color: white;
+            font-weight: bold;
+        }
+
+        #yesBtn:hover {
+            background-color: #ff1a1a;
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background-color: #e6e6e6;
+            color: #333;
+            position: relative;
+            z-index: 100; /* Para que siempre se pueda clickear aunque se mueva */
+        }
+
+        /* Estilo base para los girasoles generados */
+        .sunflower {
+            position: absolute;
+            user-select: none; /* No se pueden seleccionar */
+            pointer-events: none; /* Los clicks pasan a través de ellos */
+            z-index: 0; /* Al fondo */
+            animation: float 4s infinite ease-in-out;
+            opacity: 0.7; /* Opacidad para que no saturen demasiado */
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="sunflower-field"></div>
+
+    <div class="container">
+        <h1>Fiorella</h1>
+        <p>¿Me harías el honor de ser mi San Valentín?</p>
+        
+        <div class="buttons">
+            <button id="yesBtn" onclick="acepto()">¡Sí, claro que sí!</button>
+            <button id="noBtn" onmouseover="escapar(this)" onclick="escapar(this)">No</button>
+        </div>
+    </div>
+
+    <script>
+        // --- Lógica de los Girasoles ---
+        function plantarGirasoles() {
+            const cantidad = 40; // ¡AQUÍ PUEDES PONER MÁS SI QUIERES! (40 ya es bastante)
+            const body = document.body;
+
+            for (let i = 0; i < cantidad; i++) {
+                const div = document.createElement('div');
+                div.innerHTML = '🌻';
+                div.classList.add('sunflower');
+
+                // Posición aleatoria
+                const x = Math.random() * 100; // 0 a 100% ancho
+                const y = Math.random() * 100; // 0 a 100% alto
+                
+                // Tamaño aleatorio (Grandes: entre 3rem y 6rem)
+                const size = Math.random() * 3 + 3; 
+                
+                // Velocidad de animación aleatoria
+                const duration = Math.random() * 3 + 3;
+
+                div.style.left = x + 'vw';
+                div.style.top = y + 'vh';
+                div.style.fontSize = size + 'rem';
+                div.style.animationDuration = duration + 's';
+
+                body.appendChild(div);
+            }
+        }
+
+        // --- Lógica del Botón Escurridizo ---
+        function escapar(boton) {
+            const maxX = window.innerWidth - boton.offsetWidth - 50;
+            const maxY = window.innerHeight - boton.offsetHeight - 50;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            boton.style.position = 'fixed';
+            boton.style.left = randomX + 'px';
+            boton.style.top = randomY + 'px';
+        }
+
+        function acepto() {
+            document.querySelector('.container').innerHTML = `
+                <h1 style="color: #ff4d4d;">¡Sabía que dirías que sí! ❤️</h1>
+                <p>Nos vemos el 14 🌻</p>
+                <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Celebración" style="width: 100%; border-radius: 10px;">
+            `;
+        }
+
+        // Ejecutar la plantación al cargar
+        window.onload = plantarGirasoles;
+    </script>
+</body>
+</html>
