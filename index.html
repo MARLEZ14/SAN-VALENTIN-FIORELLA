@@ -89,15 +89,20 @@
             50% { transform: translateY(-15px) rotate(5deg); }
         }
 
+        /* Mensaje pequeñito para avisar de la música */
+        .music-hint {
+            position: absolute;
+            bottom: 20px;
+            color: #888;
+            font-size: 0.8rem;
+            z-index: 20;
+        }
+
     </style>
 </head>
-<body>
-    <div style="position: absolute; top: 10px; left: 10px; z-index: 1000;">
-        <audio controls autoplay loop>
-            <source src="cancion.mp3.mp3" type="audio/mpeg">
-            Tu navegador no soporta el audio.
-        </audio>
-    </div>
+<body onclick="playMusic()"> <audio id="musica" loop>
+        <source src="cancion.mp3.mp3" type="audio/mpeg">
+    </audio>
 
     <div id="sunflower-field"></div>
 
@@ -110,8 +115,16 @@
             <button id="noBtn" onmouseover="escapar(this)" onclick="escapar(this)">No</button>
         </div>
     </div>
+    
+    <div class="music-hint">🎵 Toca la pantalla para activar la música</div>
 
     <script>
+        // --- Lógica de Música (Nuevo truco) ---
+        function playMusic() {
+            var audio = document.getElementById("musica");
+            audio.play();
+        }
+
         // --- Lógica de los Girasoles ---
         function plantarGirasoles() {
             const cantidad = 40;
@@ -144,7 +157,7 @@
                 "No seas así 😢", 
                 "¡Mira los girasoles!", 
                 "¡Di que sí!",
-                "¡¿Por qué no quieres?!"
+                "¡No te dejo!"
             ];
 
             const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
@@ -167,10 +180,11 @@
                 <p>Nos vemos el 14 Cara mia 🌻</p>
                 <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Celebración" style="width: 100%; border-radius: 10px;">
             `;
+            // Aseguramos que la música siga sonando o empiece si no lo hizo antes
+            playMusic();
         }
 
         window.onload = plantarGirasoles;
     </script>
 </body>
 </html>
-
