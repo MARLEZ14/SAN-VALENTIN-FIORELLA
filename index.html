@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Fiorella ❤️</title>
+    <style>
+        body {
+            background-color: #ffe6e6; /* Fondo rosado suave */
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Evita que aparezcan barras de desplazamiento */
+        }
+        
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 90%;
+        }
+
+        h1 {
+            color: #ff4d4d;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            position: relative; /* Necesario para mover el botón No */
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #ff4d4d;
+            color: white;
+            font-weight: bold;
+        }
+
+        #yesBtn:hover {
+            background-color: #ff1a1a;
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background-color: #e6e6e6;
+            color: #333;
+            position: relative; /* Para moverlo libremente */
+        }
+
+        /* Girasoles decorativos (opcional) */
+        .sunflower {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.6;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="sunflower" style="top: 10%; left: 10%;">🌻</div>
+    <div class="sunflower" style="top: 20%; right: 15%;">🌻</div>
+    <div class="sunflower" style="bottom: 15%; left: 20%;">🌻</div>
+
+    <div class="container">
+        <h1>Fiorella</h1>
+        <p>¿Me harías el honor de ser mi San Valentín?</p>
+        
+        <div class="buttons">
+            <button id="yesBtn" onclick="acepto()">¡Sí, claro que sí!</button>
+            <button id="noBtn" onmouseover="escapar(this)" onclick="escapar(this)">No</button>
+        </div>
+    </div>
+
+    <script>
+        function escapar(boton) {
+            // El botón salta a una posición aleatoria cuando el mouse pasa por encima
+            const container = document.querySelector('.container');
+            
+            // Calculamos límites para que no se salga demasiado
+            const maxX = window.innerWidth - boton.offsetWidth - 20;
+            const maxY = window.innerHeight - boton.offsetHeight - 20;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            // Aplicamos posición fija para moverlo por toda la pantalla
+            boton.style.position = 'fixed';
+            boton.style.left = randomX + 'px';
+            boton.style.top = randomY + 'px';
+        }
+
+        function acepto() {
+            // Mensaje final o redirección
+            document.querySelector('.container').innerHTML = `
+                <h1 style="color: #ff4d4d;">¡Sabía que dirías que sí! ❤️</h1>
+                <p>Nos vemos el 14 🌻</p>
+                <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Celebración" style="width: 100%; border-radius: 10px;">
+            `;
+            
+            // Opcional: Reproducir música automáticamente si el navegador lo permite
+            // var audio = new Audio('ruta_de_tu_cancion.mp3');
+            // audio.play();
+        }
+    </script>
+</body>
+</html>
