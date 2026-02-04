@@ -20,13 +20,13 @@
         
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.95); /* Un poco transparente para ver girasoles detrás */
+            background: rgba(255, 255, 255, 0.95);
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             max-width: 90%;
             position: relative;
-            z-index: 10; /* Asegura que el texto esté ENCIMA de los girasoles */
+            z-index: 10;
         }
 
         h1 {
@@ -72,17 +72,16 @@
             background-color: #e6e6e6;
             color: #333;
             position: relative;
-            z-index: 100; /* Para que siempre se pueda clickear aunque se mueva */
+            z-index: 100;
         }
 
-        /* Estilo base para los girasoles generados */
         .sunflower {
             position: absolute;
-            user-select: none; /* No se pueden seleccionar */
-            pointer-events: none; /* Los clicks pasan a través de ellos */
-            z-index: 0; /* Al fondo */
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
             animation: float 4s infinite ease-in-out;
-            opacity: 0.7; /* Opacidad para que no saturen demasiado */
+            opacity: 0.7;
         }
         
         @keyframes float {
@@ -93,12 +92,13 @@
     </style>
 </head>
 <body>
-<div style="position: absolute; top: 10px; left: 10px; z-index: 1000;">
+    <div style="position: absolute; top: 10px; left: 10px; z-index: 1000;">
         <audio controls autoplay loop>
-            <source src="cancion.mp3.mp3" type="audio/mpeg">
+            <source src="cancion.mp3" type="audio/mpeg">
             Tu navegador no soporta el audio.
         </audio>
     </div>
+
     <div id="sunflower-field"></div>
 
     <div class="container">
@@ -114,7 +114,7 @@
     <script>
         // --- Lógica de los Girasoles ---
         function plantarGirasoles() {
-            const cantidad = 40; // ¡AQUÍ PUEDES PONER MÁS SI QUIERES! (40 ya es bastante)
+            const cantidad = 40;
             const body = document.body;
 
             for (let i = 0; i < cantidad; i++) {
@@ -122,14 +122,9 @@
                 div.innerHTML = '🌻';
                 div.classList.add('sunflower');
 
-                // Posición aleatoria
-                const x = Math.random() * 100; // 0 a 100% ancho
-                const y = Math.random() * 100; // 0 a 100% alto
-                
-                // Tamaño aleatorio (Grandes: entre 3rem y 6rem)
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
                 const size = Math.random() * 3 + 3; 
-                
-                // Velocidad de animación aleatoria
                 const duration = Math.random() * 3 + 3;
 
                 div.style.left = x + 'vw';
@@ -143,7 +138,6 @@
 
         // --- Lógica del Botón Escurridizo ---
         function escapar(boton) {
-           // Frases para intentar convencerla
             const frases = [
                 "¿Segura?", 
                 "¡Piénsalo bien!", 
@@ -153,11 +147,9 @@
                 "¡No te dejo!"
             ];
 
-            // Cambiar el texto del botón al azar
             const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
             boton.innerText = fraseAleatoria;
 
-            // Mover el botón (el código que ya tenías)
             const maxX = window.innerWidth - boton.offsetWidth - 50;
             const maxY = window.innerHeight - boton.offsetHeight - 50;
             const randomX = Math.random() * maxX;
@@ -167,20 +159,17 @@
             boton.style.left = randomX + 'px';
             boton.style.top = randomY + 'px';
         }
-        }
 
+        // --- Lógica del Botón Sí ---
         function acepto() {
             document.querySelector('.container').innerHTML = `
                 <h1 style="color: #ff4d4d;">¡Sabía que dirías que sí! ❤️</h1>
-                <p>Nos vemos el 14 Cara mia🌻</p>
+                <p>Nos vemos el 14 Cara mia 🌻</p>
                 <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Celebración" style="width: 100%; border-radius: 10px;">
             `;
         }
 
-        // Ejecutar la plantación al cargar
         window.onload = plantarGirasoles;
     </script>
 </body>
 </html>
-
-
