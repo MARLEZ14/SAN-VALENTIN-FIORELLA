@@ -138,9 +138,23 @@
 
         // --- Lógica del Botón Escurridizo ---
         function escapar(boton) {
+           // Frases para intentar convencerla
+            const frases = [
+                "¿Segura?", 
+                "¡Piénsalo bien!", 
+                "No seas así 😢", 
+                "¡Mira los girasoles!", 
+                "¡Di que sí!",
+                "¡No te dejo!"
+            ];
+
+            // Cambiar el texto del botón al azar
+            const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+            boton.innerText = fraseAleatoria;
+
+            // Mover el botón (el código que ya tenías)
             const maxX = window.innerWidth - boton.offsetWidth - 50;
             const maxY = window.innerHeight - boton.offsetHeight - 50;
-
             const randomX = Math.random() * maxX;
             const randomY = Math.random() * maxY;
 
@@ -148,11 +162,12 @@
             boton.style.left = randomX + 'px';
             boton.style.top = randomY + 'px';
         }
+        }
 
         function acepto() {
             document.querySelector('.container').innerHTML = `
                 <h1 style="color: #ff4d4d;">¡Sabía que dirías que sí! ❤️</h1>
-                <p>Nos vemos el 14 🌻</p>
+                <p>Nos vemos el 14 Cara mia🌻</p>
                 <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Celebración" style="width: 100%; border-radius: 10px;">
             `;
         }
@@ -162,3 +177,4 @@
     </script>
 </body>
 </html>
+
